@@ -1,0 +1,63 @@
+// 宽高
+@mixin wh($w: 100%, $h: $w) {
+  width: $w;
+  height: $h;
+}
+// 子元素 默认水平垂直居中
+@mixin child-center($mode: "xy") {
+  display: flex;
+  // 垂直居中
+  @if $mode == "x" {
+    align-items: center;
+  }
+  // 水平居中
+  @else if $mode == "y" {
+    justify-content: center;
+  }
+  // 水平垂直居中
+  @else if $mode == "xy" {
+    align-items: center;
+    justify-content: center;
+  }
+}
+// 当前元素 默认水平垂直居中
+@mixin cur-center($w: 0px, $h: 0px) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: $w;
+  height: $h;
+  // margin-top: -($h / 2);
+  // margin-left: -($w / 2);
+
+  transform: translate(-50%, -50%);
+}
+// 文本溢出省略号显示 (默认1行)
+@mixin ellipsis($line: 1) {
+  @if $line == 1 {
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box !important;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-all; // 断词
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line;
+  }
+}
+@mixin borderRadius($radius: 3px) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+  border-radius: $radius;
+}
+//字体大小，颜色
+@mixin sc($size: 14px, $color: #333) {
+  font-size: $size;
+  color: $color;
+}
